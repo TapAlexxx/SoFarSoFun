@@ -34,7 +34,6 @@ namespace Logic.PlayerControl
             if (_collisionRegistration == null)
                 return;
             
-            
             _collisionRegistration.BallCollisionRegistered -= OnBallCollision;
             _collisionRegistration.WallCollisionRegistered -= OnWallCollision;
         }
@@ -45,6 +44,12 @@ namespace Logic.PlayerControl
             {
                 IColorChangeable ball = GetRandomBall(ballCollision);
                 ball.ChangeColor(_colorService.GetRandomColor(ball.TargetColor));
+            }
+            else
+            {
+                Color tmp = ballCollision.ItsBall.TargetColor; 
+                ballCollision.ItsBall.ChangeColor(ballCollision.HitBall.TargetColor);
+                ballCollision.HitBall.ChangeColor(tmp);
             }
         }
 
@@ -58,7 +63,7 @@ namespace Logic.PlayerControl
 
         private void OnWallCollision(Wall wall)
         {
-            wall.ChangeColor(wall.TargetColor);
+            wall.ChangeColor(_colorService.GetRandomColor(wall.TargetColor));
         }
     }
 

@@ -1,5 +1,7 @@
 ﻿using System;
+using Infrastructure.Services.ColorService;
 using UnityEngine;
+using Zenject;
 using Random = UnityEngine.Random;
 
 namespace Logic.BallControl
@@ -17,17 +19,11 @@ namespace Logic.BallControl
         {
             if (!_renderer) TryGetComponent(out _renderer);
         }
-
-        private void Start()
-        {
-            Initialize(Random.Range(1, 100));
-            if (!_initialized)
-                throw new InvalidOperationException($"Ball {gameObject.name} is not initialized");
-        }
-
-        public void Initialize(int id)
+        
+        public void Initialize(int id, Color color)
         {
             ID = id;
+            ChangeColor(color);
             _initialized = true;
         }
 

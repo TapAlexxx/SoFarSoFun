@@ -1,4 +1,5 @@
 ﻿using Infrastructure.Services.StaticData;
+using Logic.PlayerControl;
 using StaticData;
 using UnityEngine;
 using Zenject;
@@ -28,6 +29,7 @@ namespace Infrastructure.Services.Factories.Game
         {
             LevelStaticData levelStaticData = _staticDataService.GetLevelStaticData();
             GameObject player = InstantiatePrefabOnActiveScene(levelStaticData.Player);
+            player.GetComponentInChildren<BallRaycaster>().Initialize();
             Player = player;
             return Player;
         }

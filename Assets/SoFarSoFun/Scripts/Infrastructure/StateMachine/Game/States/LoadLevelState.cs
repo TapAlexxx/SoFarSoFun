@@ -1,5 +1,9 @@
-﻿using Infrastructure.Services.Factories.Game;
+﻿using System.Collections.Generic;
+using System.Linq;
+using Infrastructure.Services.ColorService;
+using Infrastructure.Services.Factories.Game;
 using Infrastructure.Services.Factories.UIFactory;
+using Logic.BallControl;
 using Logic.CameraControl;
 using Logic.PlayerControl;
 using Logic.PlayerInputControl;
@@ -18,6 +22,7 @@ namespace Infrastructure.StateMachine.Game.States
         private readonly IStateMachine<IGameState> _gameStateMachine;
         private IGameFactory _gameFactory;
         private DiContainer _diContainer;
+        private IColorService _colorService;
 
         [Inject]
         public LoadLevelState(
@@ -25,8 +30,9 @@ namespace Infrastructure.StateMachine.Game.States
             ISceneLoader sceneLoader, 
             ILoadingCurtain loadingCurtain, 
             IUIFactory uiFactory, IGameFactory gameFactory,
-            DiContainer diContainer)
+            DiContainer diContainer, IColorService colorService)
         {
+            _colorService = colorService;
             _diContainer = diContainer;
             _gameFactory = gameFactory;
             _gameStateMachine = gameStateMachine;
@@ -63,6 +69,18 @@ namespace Infrastructure.StateMachine.Game.States
            InitHud();
            
            InitCamera();
+
+           InitBalls();
+        }
+
+        private void InitBalls()
+        {
+            List<Ball> balls = Object.FindObjectsOfType<Ball>().ToList();
+            foreach (Ball ball in balls)
+            {
+                ball.Initialize(Random.Range(0,100), _colorService.GetRandomColor(ball.TargetColor));
+                ball.GetComponentInChildren<BallPusher>().Initialize(200);
+            }
         }
 
         private void InitHud()

@@ -10,7 +10,7 @@ namespace Infrastructure.Services.CollisionRegistration
 
     public class CollisionRegistrationService : ICollisionRegistrationService
     {
-        private List<BallCollision> _ballCollisions;
+        private List<BallCollision> _ballCollisions = new List<BallCollision>();
         
         public event Action<BallCollision> BallCollisionRegistered;
         public event Action<Wall> WallCollisionRegistered;
