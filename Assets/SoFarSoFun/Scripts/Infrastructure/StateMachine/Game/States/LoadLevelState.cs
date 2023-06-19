@@ -7,6 +7,20 @@ using Object = UnityEngine.Object;
 
 namespace Infrastructure.StateMachine.Game.States
 {
+
+    public class LoadMenuState : IPayloadedState<string>, IGameState
+    {
+        public void Enter(string payload)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public void Exit()
+        {
+            throw new System.NotImplementedException();
+        }
+    }
+
     public class LoadLevelState : IPayloadedState<string>, IGameState
     {
         private readonly ISceneLoader _sceneLoader;
@@ -67,10 +81,7 @@ namespace Infrastructure.StateMachine.Game.States
         private void InitCamera()
         {
             CameraStateChanger cameraStateChanger = Object.FindObjectOfType<CameraStateChanger>();
-            Transform player = _gameFactory.Player 
-                ? _gameFactory.Player.transform 
-                : new GameObject { transform = { position = new Vector3(0, -2 ,10)} }.transform;
-            cameraStateChanger.Initialize(player.transform);
+            Transform player = _gameFactory.Player.transform;
             cameraStateChanger.SwitchTo(CameraViewState.Default, player);
         }
 
