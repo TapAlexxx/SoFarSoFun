@@ -1,4 +1,5 @@
 ﻿using System;
+using DG.Tweening;
 using Infrastructure.Services.ColorService;
 using UnityEngine;
 using Zenject;
@@ -30,7 +31,7 @@ namespace Logic.BallControl
         public void ChangeColor(Color color)
         {
             TargetColor = color;
-            _renderer.material.color = color;
+            _renderer.material.DOColor(TargetColor, 0.5f);
         }
     }
 
