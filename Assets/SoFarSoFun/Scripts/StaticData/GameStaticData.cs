@@ -7,6 +7,7 @@ namespace StaticData
     {
         public string InitialScene = "Initial";
         public string FirstScene = "First";
+        public string GameScene = "Game";
         public bool CanLoadCurrentOpenedScene = false;
     }
 }

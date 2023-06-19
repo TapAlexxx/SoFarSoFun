@@ -8,19 +8,6 @@ using Object = UnityEngine.Object;
 namespace Infrastructure.StateMachine.Game.States
 {
 
-    public class LoadMenuState : IPayloadedState<string>, IGameState
-    {
-        public void Enter(string payload)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public void Exit()
-        {
-            throw new System.NotImplementedException();
-        }
-    }
-
     public class LoadLevelState : IPayloadedState<string>, IGameState
     {
         private readonly ISceneLoader _sceneLoader;

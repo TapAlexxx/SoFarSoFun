@@ -72,6 +72,7 @@ namespace Infrastructure.Installers
             Container.Bind<BootstrapState>().AsSingle();
             Container.Bind<LoadProgressState>().AsSingle();
             Container.Bind<LoadMenuState>().AsSingle();
+            Container.Bind<MenuState>().AsSingle();
             Container.Bind<LoadLevelState>().AsSingle();
             Container.Bind<GameLoopState>().AsSingle();
         }
