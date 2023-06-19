@@ -10,7 +10,7 @@ namespace Infrastructure.Services.StaticData
     {
         private const string GameConfigPath = "StaticData/GameConfig";
         private const string WindowsStaticDataPath = "StaticData/WindowsStaticData";
-        private const string ColorStaticDataPath = "StaticData/ColorStaticData";
+        private const string ColorStaticDataPath = "StaticData/Color/ColorStaticData";
 
         private GameStaticData _gameStaticData;
         private Dictionary<WindowTypeId, WindowConfig> _windowConfigs;
