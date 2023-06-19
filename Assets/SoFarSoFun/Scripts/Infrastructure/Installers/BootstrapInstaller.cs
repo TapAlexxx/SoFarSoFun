@@ -1,4 +1,5 @@
 using Infrastructure.Services.CollisionRegistration;
+using Infrastructure.Services.ColorService;
 using Infrastructure.Services.Factories.Game;
 using Infrastructure.Services.Factories.UIFactory;
 using Infrastructure.Services.PersistenceProgress;
@@ -39,6 +40,7 @@ namespace Infrastructure.Installers
             Container.Bind<IUIFactory>().To<UIFactory>().AsSingle();
             Container.Bind<IWindowService>().To<WindowService>().AsSingle();
             Container.Bind<ICollisionRegistrationService>().To<CollisionRegistrationService>().AsSingle();
+            Container.Bind<IColorService>().To<ColorService>().AsSingle();
             Container.Bind<IPersistenceProgressService>().To<PersistenceProgressService>().AsSingle(); 
         }
 
