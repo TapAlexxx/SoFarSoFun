@@ -18,17 +18,17 @@ namespace Logic.BallControl
             if (!_renderer) TryGetComponent(out _renderer);
         }
 
-        public void Initialize(int id)
-        {
-            ID = id;
-            _initialized = true;
-        }
-
         private void Start()
         {
             Initialize(Random.Range(1, 100));
             if (!_initialized)
                 throw new InvalidOperationException($"Ball {gameObject.name} is not initialized");
+        }
+
+        public void Initialize(int id)
+        {
+            ID = id;
+            _initialized = true;
         }
 
         public void ChangeColor(Color color)

@@ -10,6 +10,7 @@ namespace Logic.PlayerInputControl
         public Vector3 Delta { get; private set; }
 
         private bool IsBeginDrag => Input.GetMouseButtonDown(0);
+        public bool IsOnDrag => Input.GetMouseButton(0);
 
         private void Update()
         {

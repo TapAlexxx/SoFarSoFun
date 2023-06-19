@@ -1,4 +1,5 @@
 ﻿using Infrastructure.Services.StaticData;
+using StaticData;
 using UnityEngine;
 using Zenject;
 
@@ -6,7 +7,7 @@ namespace Infrastructure.Services.Factories.Game
 {
     public class GameFactory : Factory, IGameFactory
     {
-        private IStaticDataService _staticDataService;
+        private readonly IStaticDataService _staticDataService;
         public GameObject Player { get; private set; }
         public GameObject GameHud { get; private set; }
 
@@ -23,14 +24,18 @@ namespace Infrastructure.Services.Factories.Game
             return GameHud;
         }
 
-        public void CreatePlayer()
+        public GameObject CreatePlayer()
         {
-            _staticDataService.GetLevelStaticData();
+            LevelStaticData levelStaticData = _staticDataService.GetLevelStaticData();
+            GameObject player = InstantiatePrefabOnActiveScene(levelStaticData.Player);
+            Player = player;
+            return Player;
         }
 
         public void Clear()
         {
             Player = null;
+            GameHud = null;
         }
     }
 }

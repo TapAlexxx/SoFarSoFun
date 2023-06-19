@@ -1,6 +1,8 @@
 ﻿using Infrastructure.Services.Factories.Game;
 using Infrastructure.Services.Factories.UIFactory;
 using Logic.CameraControl;
+using Logic.PlayerControl;
+using Logic.PlayerInputControl;
 using UnityEngine;
 using Zenject;
 using Object = UnityEngine.Object;
@@ -76,8 +78,12 @@ namespace Infrastructure.StateMachine.Game.States
         private void InitCamera()
         {
             CameraStateChanger cameraStateChanger = Object.FindObjectOfType<CameraStateChanger>();
+            CameraRotator cameraRotator = cameraStateChanger.GetComponentInChildren<CameraRotator>();
+            
             Transform player = _gameFactory.Player.transform;
             cameraStateChanger.SwitchTo(CameraViewState.Default, player);
+            
+            cameraRotator.Initialize(_gameFactory.Player.GetComponentInChildren<PlayerDragInput>());
         }
 
         private void Inject<T>() where T : Object

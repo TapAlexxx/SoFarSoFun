@@ -1,4 +1,6 @@
-﻿using Cinemachine;
+﻿using System;
+using Cinemachine;
+using Logic.PlayerInputControl;
 using UnityEngine;
 
 namespace Logic.PlayerControl
@@ -9,16 +11,28 @@ namespace Logic.PlayerControl
         [SerializeField] private CinemachineVirtualCamera _virtualCamera;
 
         private CinemachineOrbitalTransposer _orbitalTransposer;
+        private PlayerDragInput _playerDragInput;
+
+        public void Initialize(PlayerDragInput playerDragInput)
+        {
+            _playerDragInput = playerDragInput;
+        }
         
         private void Start()
         {
             _orbitalTransposer = _virtualCamera.GetCinemachineComponent<CinemachineOrbitalTransposer>();
         }
 
-        public void Rotate(float deltaX)
+        private void Update()
         {
-            _orbitalTransposer.m_XAxis.Value += deltaX;
+            if(!_playerDragInput || !_playerDragInput.IsOnDrag)
+                return;
+            
+            Rotate(_playerDragInput.Delta.x);
         }
+
+        private void Rotate(float deltaX) => 
+            _orbitalTransposer.m_XAxis.Value += deltaX;
     }
 
 }
