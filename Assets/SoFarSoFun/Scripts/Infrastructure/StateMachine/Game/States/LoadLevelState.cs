@@ -57,7 +57,6 @@ namespace Infrastructure.StateMachine.Game.States
            _gameFactory.Clear();
 
            InitHud();
-           InitCamera();
         }
 
         private void InitHud()

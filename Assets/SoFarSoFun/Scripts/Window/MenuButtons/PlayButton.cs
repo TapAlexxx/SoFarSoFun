@@ -12,8 +12,14 @@ namespace Window.MenuButtons
     public class PlayButton : MonoBehaviour
     {
         [SerializeField] public Button button;
+        
         private IStateMachine<IGameState> _gameStateMachine;
         private IStaticDataService _staticDataService;
+
+        private void OnValidate()
+        {
+            if (!button) TryGetComponent(out button);
+        }
 
         [Inject]
         public void Construct(IStateMachine<IGameState> gameStateMachine,IStaticDataService staticDataService)

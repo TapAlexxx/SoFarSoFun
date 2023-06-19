@@ -7,7 +7,12 @@ namespace Window.MenuButtons
     public class ExitButton : MonoBehaviour
     {
         [SerializeField] public Button button;
-
+        
+        private void OnValidate()
+        {
+            if (!button) TryGetComponent(out button);
+        }
+        
         private void Start()
         {
             button.onClick.AddListener(QuitGame);

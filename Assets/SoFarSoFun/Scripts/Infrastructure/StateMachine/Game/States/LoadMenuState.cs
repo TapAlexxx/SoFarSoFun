@@ -1,4 +1,5 @@
-﻿using Infrastructure.Services.Window;
+﻿using Infrastructure.Services.Factories.UIFactory;
+using Infrastructure.Services.Window;
 using Window;
 using Zenject;
 
@@ -11,11 +12,13 @@ namespace Infrastructure.StateMachine.Game.States
         private ISceneLoader _sceneLoader;
         private IWindowService _windowService;
         private IStateMachine<IGameState> _gameStateMachine;
+        private IUIFactory _uiFactory;
 
         [Inject]
         public void Construct(ILoadingCurtain loadingCurtain, ISceneLoader sceneLoader,
-            IWindowService windowService, IStateMachine<IGameState> gameStateMachine)
+            IWindowService windowService, IStateMachine<IGameState> gameStateMachine, IUIFactory uiFactory)
         {
+            _uiFactory = uiFactory;
             _gameStateMachine = gameStateMachine;
             _windowService = windowService;
             _sceneLoader = sceneLoader;
@@ -29,6 +32,8 @@ namespace Infrastructure.StateMachine.Game.States
 
         private void OnLevelLoad()
         {
+            _uiFactory.CreateUiRoot();
+            
             InitMenu();
             
             _gameStateMachine.Enter<MenuState>();

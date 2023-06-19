@@ -17,7 +17,7 @@ namespace Infrastructure.StateMachine.Game.States
         public void Enter(string payload)
         {
             LoadOrCreatePlayerData();
-            _stateMachine.Enter<LoadLevelState, string>(payload);
+            _stateMachine.Enter<LoadMenuState, string>(payload);
         }
 
         public void Exit()
