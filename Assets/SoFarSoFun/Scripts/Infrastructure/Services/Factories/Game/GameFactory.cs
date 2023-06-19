@@ -23,6 +23,11 @@ namespace Infrastructure.Services.Factories.Game
             return GameHud;
         }
 
+        public void CreatePlayer()
+        {
+            _staticDataService.GetLevelStaticData();
+        }
+
         public void Clear()
         {
             Player = null;

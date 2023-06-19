@@ -56,12 +56,21 @@ namespace Infrastructure.StateMachine.Game.States
            _uiFactory.CreateUiRoot();
            _gameFactory.Clear();
 
+           InitPlayer();
+           
            InitHud();
+           
+           InitCamera();
         }
 
         private void InitHud()
         {
             GameObject hud = _gameFactory.CreateHud();
+        }
+
+        private void InitPlayer()
+        {
+            _gameFactory.CreatePlayer();
         }
 
         private void InitCamera()

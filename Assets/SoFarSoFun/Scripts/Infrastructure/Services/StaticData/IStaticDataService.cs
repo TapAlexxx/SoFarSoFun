@@ -12,5 +12,6 @@ namespace Infrastructure.Services.StaticData
         GameStaticData GameConfig();
         WindowConfig ForWindow(WindowTypeId windowTypeId);
         List<Color> GetColorData();
+        LevelStaticData GetLevelStaticData();
     }
 }

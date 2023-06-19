@@ -16,6 +16,7 @@ namespace Logic.BallControl
         private void OnValidate()
         {
             if (!_collisionObserver) TryGetComponent(out _collisionObserver);
+            if (!_ball) TryGetComponent(out _ball);
         }
 
         [Inject]
@@ -38,13 +39,13 @@ namespace Logic.BallControl
         {
             if (obj.collider.TryGetComponent(out Ball hitBall))
             {
-                BallCollision collision = new BallCollision(_ball.ID, hitBall.ID);
+                BallCollision collision = new BallCollision(_ball.ID, hitBall.ID, _ball, hitBall);
                 _collisionRegistrationService.TryRegisterBallCollision(collision);
             }
 
             if (obj.collider.TryGetComponent(out Wall wall))
             {
-                _collisionRegistrationService.RegisterWallCollision();
+                _collisionRegistrationService.RegisterWallCollision(wall);
             }
         }
     }

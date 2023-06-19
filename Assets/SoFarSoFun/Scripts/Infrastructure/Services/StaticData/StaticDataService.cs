@@ -11,10 +11,12 @@ namespace Infrastructure.Services.StaticData
         private const string GameConfigPath = "StaticData/GameConfig";
         private const string WindowsStaticDataPath = "StaticData/WindowsStaticData";
         private const string ColorStaticDataPath = "StaticData/Color/ColorStaticData";
+        private const string LevelStaticDataPath = "StaticData/Level/LevelStaticData";
 
         private GameStaticData _gameStaticData;
         private Dictionary<WindowTypeId, WindowConfig> _windowConfigs;
         private ColorStaticData _colorStaticData;
+        private LevelStaticData _levelStaticData;
 
         public void LoadData()
         {
@@ -27,6 +29,9 @@ namespace Infrastructure.Services.StaticData
 
             _colorStaticData = Resources
                 .Load<ColorStaticData>(ColorStaticDataPath);
+            
+            _levelStaticData = Resources
+                .Load<LevelStaticData>(LevelStaticDataPath);
         }
 
         public GameStaticData GameConfig() =>
@@ -37,5 +42,8 @@ namespace Infrastructure.Services.StaticData
 
         public List<Color> GetColorData() => 
             _colorStaticData.ColorData;
+
+        public LevelStaticData GetLevelStaticData() => 
+            _levelStaticData;
     }
 }

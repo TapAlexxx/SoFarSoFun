@@ -1,4 +1,5 @@
 ﻿using System;
+using Logic.BallControl;
 using Logic.Collisions;
 
 namespace Infrastructure.Services.CollisionRegistration
@@ -6,11 +7,13 @@ namespace Infrastructure.Services.CollisionRegistration
 
     public interface ICollisionRegistrationService
     {
-        event Action BallCollisionRegistered;
-        event Action WallCollisionRegistered;
+        event Action<BallCollision> BallCollisionRegistered;
+        event Action<Wall> WallCollisionRegistered;
 
         void TryRegisterBallCollision(BallCollision ballCollision);
-        void RegisterWallCollision();
+        void RegisterWallCollision(Wall wall);
+
+        void Clear();
     }
 
 }

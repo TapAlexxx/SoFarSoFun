@@ -8,5 +8,6 @@ namespace Infrastructure.Services.Factories.Game
         GameObject GameHud { get; }
         GameObject CreateHud();
         void Clear();
+        void CreatePlayer();
     }
 }

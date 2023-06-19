@@ -3,9 +3,11 @@
 namespace Logic.BallControl
 {
 
-    public class Wall : MonoBehaviour
+    public class Wall : MonoBehaviour, IColorChangeable
     {
         [SerializeField] private Renderer _renderer;
+
+        public Color TargetColor { get; private set; }
 
         private void OnValidate()
         {
@@ -14,7 +16,13 @@ namespace Logic.BallControl
 
         public void Initialize(Color startColor)
         {
-            _renderer.material.color = startColor;
+            ChangeColor(startColor);
+        }
+
+        public void ChangeColor(Color color)
+        {
+            TargetColor = color;
+            _renderer.material.color = color;
         }
     }
 

@@ -1,26 +1,29 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Logic.BallControl;
 using Logic.Collisions;
+using UnityEngine;
 
 namespace Infrastructure.Services.CollisionRegistration
 {
 
     public class CollisionRegistrationService : ICollisionRegistrationService
     {
-        private List<BallCollision> _ballCollisions = new List<BallCollision>();
+        private List<BallCollision> _ballCollisions;
         
-        public event Action BallCollisionRegistered;
-        public event Action WallCollisionRegistered;
+        public event Action<BallCollision> BallCollisionRegistered;
+        public event Action<Wall> WallCollisionRegistered;
         
         public void TryRegisterBallCollision(BallCollision ballCollision)
         {
-            BallCollision equalCollision = _ballCollisions.FirstOrDefault(x => x.IsEqual(ballCollision));
+            BallCollision equalCollision = _ballCollisions.FirstOrDefault(x => x.IsEqualId(ballCollision));
             
             if (equalCollision == null)
             {
+                Debug.Log($"Registered with {ballCollision.ItsBallId} and {ballCollision.HitBallId}");
                 _ballCollisions.Add(ballCollision);
-                BallCollisionRegistered?.Invoke();
+                BallCollisionRegistered?.Invoke(ballCollision);
             }
             else
             {
@@ -28,9 +31,14 @@ namespace Infrastructure.Services.CollisionRegistration
             }
         }
 
-        public void RegisterWallCollision()
+        public void RegisterWallCollision(Wall wall)
         {
-            WallCollisionRegistered?.Invoke();
+            WallCollisionRegistered?.Invoke(wall);
+        }
+
+        public void Clear()
+        {
+            _ballCollisions = new List<BallCollision>();
         }
     }
 
