@@ -10,18 +10,23 @@ namespace Infrastructure.Services.StaticData
     {
         private const string GameConfigPath = "StaticData/GameConfig";
         private const string WindowsStaticDataPath = "StaticData/WindowsStaticData";
+        private const string ColorStaticDataPath = "StaticData/ColorStaticData";
 
         private GameStaticData _gameStaticData;
         private Dictionary<WindowTypeId, WindowConfig> _windowConfigs;
+        private ColorStaticData _colorStaticData;
 
         public void LoadData()
         {
             _gameStaticData = Resources
                 .Load<GameStaticData>(GameConfigPath);
-
+            
             _windowConfigs = Resources
                 .Load<WindowStaticData>(WindowsStaticDataPath)
                 .Configs.ToDictionary(x => x.WindowTypeId, x => x);
+
+            _colorStaticData = Resources
+                .Load<ColorStaticData>(ColorStaticDataPath);
         }
 
         public GameStaticData GameConfig() =>
@@ -29,5 +34,8 @@ namespace Infrastructure.Services.StaticData
 
         public WindowConfig ForWindow(WindowTypeId windowTypeId) => 
             _windowConfigs[windowTypeId];
+
+        public List<Color> GetColorData() => 
+            _colorStaticData.ColorData;
     }
 }

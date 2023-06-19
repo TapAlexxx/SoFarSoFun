@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Logic.Collisions
@@ -14,4 +15,5 @@ namespace Logic.Collisions
         private void OnCollisionExit(Collision collision) =>
             ColliderExit?.Invoke(collision);
     }
+
 }

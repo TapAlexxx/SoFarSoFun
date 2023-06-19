@@ -1,0 +1,52 @@
+﻿using Infrastructure.Services.CollisionRegistration;
+using Logic.Collisions;
+using UnityEngine;
+using Zenject;
+
+namespace Logic.BallControl
+{
+
+    public class BallCollisionObserver : MonoBehaviour
+    {
+        [SerializeField] private CollisionObserver _collisionObserver;
+        [SerializeField] private Ball _ball;
+        
+        private ICollisionRegistrationService _collisionRegistrationService;
+
+        private void OnValidate()
+        {
+            if (!_collisionObserver) TryGetComponent(out _collisionObserver);
+        }
+
+        [Inject]
+        public void Construct(ICollisionRegistrationService collisionRegistrationService)
+        {
+            _collisionRegistrationService = collisionRegistrationService;
+        }
+
+        private void Start()
+        {
+            _collisionObserver.ColliderEnter += OnCollision;
+        }
+
+        private void OnDestroy()
+        {
+            _collisionObserver.ColliderEnter -= OnCollision;
+        }
+
+        private void OnCollision(Collision obj)
+        {
+            if (obj.collider.TryGetComponent(out Ball hitBall))
+            {
+                BallCollision collision = new BallCollision(_ball.ID, hitBall.ID);
+                _collisionRegistrationService.TryRegisterBallCollision(collision);
+            }
+
+            if (obj.collider.TryGetComponent(out Wall wall))
+            {
+                _collisionRegistrationService.RegisterWallCollision();
+            }
+        }
+    }
+
+}

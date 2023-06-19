@@ -8,14 +8,14 @@ namespace Infrastructure.StateMachine.Game.States
 
     public class LoadMenuState : IPayloadedState<string>, IGameState
     {
-        private ILoadingCurtain _loadingCurtain;
-        private ISceneLoader _sceneLoader;
-        private IWindowService _windowService;
-        private IStateMachine<IGameState> _gameStateMachine;
-        private IUIFactory _uiFactory;
+        private readonly ILoadingCurtain _loadingCurtain;
+        private readonly ISceneLoader _sceneLoader;
+        private readonly IWindowService _windowService;
+        private readonly IStateMachine<IGameState> _gameStateMachine;
+        private readonly IUIFactory _uiFactory;
 
         [Inject]
-        public void Construct(ILoadingCurtain loadingCurtain, ISceneLoader sceneLoader,
+        public LoadMenuState(ILoadingCurtain loadingCurtain, ISceneLoader sceneLoader,
             IWindowService windowService, IStateMachine<IGameState> gameStateMachine, IUIFactory uiFactory)
         {
             _uiFactory = uiFactory;

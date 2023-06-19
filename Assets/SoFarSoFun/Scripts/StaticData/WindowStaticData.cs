@@ -8,4 +8,5 @@ namespace StaticData
   {
     public List<WindowConfig> Configs = new List<WindowConfig>();
   }
+
 }
