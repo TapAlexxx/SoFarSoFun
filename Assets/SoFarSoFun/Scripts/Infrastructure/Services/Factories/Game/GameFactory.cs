@@ -84,7 +84,7 @@ namespace Infrastructure.Services.Factories.Game
                 BallPusher ballPusher = ballGameObject.GetComponentInChildren<BallPusher>();
 
                 ball.Initialize(i, _colorService.GetRandomColor());
-                ballPusher.Initialize(levelData.ClickPower);
+                ballPusher.Initialize(levelData.BallPushPower);
 
                 ball.transform.position = targetPosition;
             }

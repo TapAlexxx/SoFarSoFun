@@ -12,12 +12,8 @@ namespace StaticData
         
         [Space(20)]
         
-        [Header("Input")]
-        public float ClickPower = 200;
-        
-        [Space(20)]
-        
         [Header("Ball")]
+        public float BallPushPower = 200;
         public int BallCount;
         public float BallSpawnRadius = 10f;
 
