@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Player: {fileID: 2600951648850089038, guid: 925ce1e11cf088f4e98b58f795044b05, type: 3}
   Ball: {fileID: 3088350331463099422, guid: 2fb30a44743b70c4b9cd7a0d52eb30f2, type: 3}
-  BallCount: 19
-  BallSpawnRadius: 10
+  BallCount: 10
+  BallSpawnRadius: 9
   ClickPower: 250
   ComboResetTime: 3

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace Logic.BallControl
 {
@@ -7,6 +8,8 @@ namespace Logic.BallControl
     {
         [SerializeField] private Rigidbody _rigidbody;
         private float _force;
+
+        public event Action BallPushed;
 
         private void OnValidate()
         {
@@ -17,11 +20,12 @@ namespace Logic.BallControl
         {
             _force = force;
         }
-        
+
         public void PushTo(Vector3 direction)
         {
             _rigidbody.velocity = Vector3.zero;
             _rigidbody.AddForce(direction * _force, ForceMode.Impulse);
+            BallPushed?.Invoke();
         }
     }
 

@@ -6,7 +6,7 @@ namespace Logic.BallControl
 
     public class BallAnimation : MonoBehaviour
     {
-        public void AnimateBallHit()
+        public void AnimateBallPop()
         {
             Sequence sequence = DOTween.Sequence();
             sequence

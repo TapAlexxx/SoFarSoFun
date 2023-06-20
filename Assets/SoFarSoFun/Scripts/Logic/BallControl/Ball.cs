@@ -1,9 +1,5 @@
-﻿using System;
-using DG.Tweening;
-using Infrastructure.Services.ColorService;
+﻿using DG.Tweening;
 using UnityEngine;
-using Zenject;
-using Random = UnityEngine.Random;
 
 namespace Logic.BallControl
 {
@@ -12,7 +8,6 @@ namespace Logic.BallControl
     {
         [SerializeField] private Renderer _renderer;
         
-        private bool _initialized;
         public int ID { get; private set; }
         public Color TargetColor { get; private set; }
 
@@ -25,13 +20,12 @@ namespace Logic.BallControl
         {
             ID = id;
             ChangeColor(color);
-            _initialized = true;
         }
 
         public void ChangeColor(Color color)
         {
             TargetColor = color;
-            _renderer.material.DOColor(TargetColor, 0.5f);
+            _renderer.material.DOColor(TargetColor, 0.3f);
         }
     }
 

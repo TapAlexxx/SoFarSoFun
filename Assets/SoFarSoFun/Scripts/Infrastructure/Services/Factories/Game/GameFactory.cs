@@ -85,7 +85,6 @@ namespace Infrastructure.Services.Factories.Game
                 ballPusher.Initialize(levelData.ClickPower);
 
                 ball.transform.position = targetPosition;
-
             }
             return ballGameObject != null;
         }
@@ -96,7 +95,7 @@ namespace Infrastructure.Services.Factories.Game
             Vector2 randomXZ = Random.insideUnitCircle * ballSpawnRadius;
             targetPosition = new Vector3(randomXZ.x, 1.5f, randomXZ.y);
 
-            Collider[] colliders = Physics.OverlapSphere(targetPosition, 2, 1<<9);
+            Collider[] colliders = Physics.OverlapSphere(targetPosition, 2.5f, 1<<9);
 
             if (colliders.Length == 0)
             {
