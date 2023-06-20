@@ -9,7 +9,6 @@ namespace Infrastructure.StateMachine.Game.States
 
         public void Update()
         {
-            
         }
 
         public void Exit()

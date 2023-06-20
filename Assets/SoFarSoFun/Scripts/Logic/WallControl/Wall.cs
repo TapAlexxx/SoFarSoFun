@@ -11,6 +11,8 @@ namespace Logic.BallControl
     {
         [SerializeField] private Renderer _renderer;
 
+        private IColorService _colorService;
+        
         public Color TargetColor { get; private set; }
 
         private void OnValidate()
@@ -23,7 +25,6 @@ namespace Logic.BallControl
         {
             _colorService = colorService;
         }
-        private IColorService _colorService;
         
         private void Start()
         {

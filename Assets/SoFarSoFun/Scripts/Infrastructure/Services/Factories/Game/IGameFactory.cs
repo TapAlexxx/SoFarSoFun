@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace Infrastructure.Services.Factories.Game
@@ -9,5 +10,6 @@ namespace Infrastructure.Services.Factories.Game
         GameObject CreateHud();
         GameObject CreatePlayer();
         void Clear();
+        void CreateBalls(Action onBallsCreated);
     }
 }

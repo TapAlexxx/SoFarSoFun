@@ -7,9 +7,11 @@ namespace StaticData
     public class LevelStaticData : ScriptableObject
     {
         public GameObject Player;
-        
+        public GameObject Ball;
+        [Space(20)]
         public int BallCount;
-        public float ClickPower;
+        public float BallSpawnRadius = 10f;
+        public float ClickPower = 200;
         public float ComboResetTime;
     }
 

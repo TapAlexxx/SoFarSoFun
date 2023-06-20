@@ -21,7 +21,6 @@ namespace Infrastructure.Services.CollisionRegistration
             
             if (equalCollision == null)
             {
-                Debug.Log($"Registered with {ballCollision.ItsBallId} and {ballCollision.HitBallId}");
                 _ballCollisions.Add(ballCollision);
                 BallCollisionRegistered?.Invoke(ballCollision);
             }

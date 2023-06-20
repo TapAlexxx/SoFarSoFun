@@ -10,12 +10,14 @@ namespace Logic.BallControl
     {
         [SerializeField] private CollisionObserver _collisionObserver;
         [SerializeField] private Ball _ball;
+        [SerializeField] private BallAnimation _ballAnimation;
         
         private ICollisionRegistrationService _collisionRegistrationService;
 
         private void OnValidate()
         {
             if (!_collisionObserver) TryGetComponent(out _collisionObserver);
+            if (!_ballAnimation) TryGetComponent(out _ballAnimation);
             if (!_ball) TryGetComponent(out _ball);
         }
 
@@ -41,6 +43,7 @@ namespace Logic.BallControl
             {
                 BallCollision collision = new BallCollision(_ball.ID, hitBall.ID, _ball, hitBall);
                 _collisionRegistrationService.TryRegisterBallCollision(collision);
+                _ballAnimation.AnimateBallHit();
             }
 
             if (obj.collider.TryGetComponent(out Wall wall))

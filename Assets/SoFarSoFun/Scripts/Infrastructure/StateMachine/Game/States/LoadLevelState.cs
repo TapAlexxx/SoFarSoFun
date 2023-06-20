@@ -1,12 +1,15 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Infrastructure.Services.ColorService;
 using Infrastructure.Services.Factories.Game;
 using Infrastructure.Services.Factories.UIFactory;
+using Infrastructure.Services.StaticData;
 using Logic.BallControl;
 using Logic.CameraControl;
 using Logic.PlayerControl;
 using Logic.PlayerInputControl;
+using StaticData;
 using UnityEngine;
 using Zenject;
 using Object = UnityEngine.Object;
@@ -23,6 +26,7 @@ namespace Infrastructure.StateMachine.Game.States
         private IGameFactory _gameFactory;
         private DiContainer _diContainer;
         private IColorService _colorService;
+        private IStaticDataService _staticDataService;
 
         [Inject]
         public LoadLevelState(
@@ -30,7 +34,7 @@ namespace Infrastructure.StateMachine.Game.States
             ISceneLoader sceneLoader, 
             ILoadingCurtain loadingCurtain, 
             IUIFactory uiFactory, IGameFactory gameFactory,
-            DiContainer diContainer, IColorService colorService)
+            DiContainer diContainer, IColorService colorService, IStaticDataService staticDataService)
         {
             _colorService = colorService;
             _diContainer = diContainer;
@@ -39,6 +43,7 @@ namespace Infrastructure.StateMachine.Game.States
             _sceneLoader = sceneLoader;
             _loadingCurtain = loadingCurtain;
             _uiFactory = uiFactory;
+            _staticDataService = staticDataService;
         }
 
         public void Enter(string payload)
@@ -54,12 +59,15 @@ namespace Infrastructure.StateMachine.Game.States
 
         protected virtual void OnLevelLoad()
         {
-            InitGameWorld();
-            
+            InitGameWorld(OnLevelInited);
+        }
+
+        private void OnLevelInited()
+        {
             _gameStateMachine.Enter<GameLoopState>();
         }
 
-        private void InitGameWorld()
+        private void InitGameWorld(Action onLevelInited)
         {
            _uiFactory.CreateUiRoot();
            _gameFactory.Clear();
@@ -70,17 +78,12 @@ namespace Infrastructure.StateMachine.Game.States
            
            InitCamera();
 
-           InitBalls();
+           InitBalls(onLevelInited);
         }
 
-        private void InitBalls()
+        private void InitBalls(Action onLevelInited)
         {
-            List<Ball> balls = Object.FindObjectsOfType<Ball>().ToList();
-            foreach (Ball ball in balls)
-            {
-                ball.Initialize(Random.Range(0,100), _colorService.GetRandomColor(ball.TargetColor));
-                ball.GetComponentInChildren<BallPusher>().Initialize(200);
-            }
+            _gameFactory.CreateBalls(onLevelInited);
         }
 
         private void InitHud()
