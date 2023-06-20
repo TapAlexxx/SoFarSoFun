@@ -1,5 +1,6 @@
 ﻿using Infrastructure.Services.CollisionRegistration;
 using Logic.Collisions;
+using Logic.WallControl;
 using UnityEngine;
 using Zenject;
 

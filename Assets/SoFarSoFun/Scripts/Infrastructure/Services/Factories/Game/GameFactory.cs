@@ -5,6 +5,7 @@ using System.Runtime.CompilerServices;
 using Infrastructure.Services.ColorService;
 using Infrastructure.Services.StaticData;
 using Logic.BallControl;
+using Logic.Hud.TextControls;
 using Logic.PlayerControl;
 using StaticData;
 using UnityEngine;
@@ -44,6 +45,7 @@ namespace Infrastructure.Services.Factories.Game
             LevelStaticData levelStaticData = _staticDataService.GetLevelStaticData();
             GameObject player = InstantiatePrefabOnActiveScene(levelStaticData.Player);
             player.GetComponentInChildren<BallRaycaster>().Initialize();
+            player.GetComponentInChildren<BallHitCounter>().Initialize(levelStaticData.ComboResetTime, levelStaticData.MaxCombo);
             Player = player;
             return Player;
         }

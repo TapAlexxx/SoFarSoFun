@@ -1,6 +1,6 @@
 ﻿using System;
 using Cinemachine;
-using Logic.PlayerInputControl;
+using Logic.PlayerControl.PlayerInputControl;
 using UnityEngine;
 
 namespace Logic.PlayerControl

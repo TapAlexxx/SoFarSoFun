@@ -4,6 +4,7 @@ using Infrastructure.Services.CollisionRegistration;
 using Infrastructure.Services.ColorService;
 using Logic.BallControl;
 using Logic.Collisions;
+using Logic.WallControl;
 using UnityEngine;
 using Zenject;
 using Random = UnityEngine.Random;

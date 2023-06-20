@@ -8,7 +8,7 @@ using Infrastructure.Services.StaticData;
 using Logic.BallControl;
 using Logic.CameraControl;
 using Logic.PlayerControl;
-using Logic.PlayerInputControl;
+using Logic.PlayerControl.PlayerInputControl;
 using StaticData;
 using UnityEngine;
 using Zenject;

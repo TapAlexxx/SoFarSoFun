@@ -1,6 +1,7 @@
 ﻿using System;
 using Logic.BallControl;
 using Logic.Collisions;
+using Logic.WallControl;
 
 namespace Infrastructure.Services.CollisionRegistration
 {

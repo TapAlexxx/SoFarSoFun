@@ -1,7 +1,6 @@
 ﻿using System.Linq;
-using Logic.BallControl;
 
-namespace Logic.Collisions
+namespace Logic.BallControl
 {
 
     public class BallCollision

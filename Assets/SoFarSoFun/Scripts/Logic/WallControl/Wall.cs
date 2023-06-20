@@ -1,10 +1,9 @@
-﻿using System;
-using DG.Tweening;
+﻿using DG.Tweening;
 using Infrastructure.Services.ColorService;
 using UnityEngine;
 using Zenject;
 
-namespace Logic.BallControl
+namespace Logic.WallControl
 {
 
     public class Wall : MonoBehaviour, IColorChangeable
