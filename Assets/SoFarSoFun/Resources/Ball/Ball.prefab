@@ -185,6 +185,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71e2a615b450438985a4358f50508f60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _ballCollisionParticle: {fileID: 74078499623404260, guid: 9790383d97594f049aecba8cf470e3b7, type: 3}
 --- !u!114 &1659195434901959268
 MonoBehaviour:
   m_ObjectHideFlags: 0

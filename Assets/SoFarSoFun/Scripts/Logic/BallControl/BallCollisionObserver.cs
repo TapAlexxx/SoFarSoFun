@@ -44,6 +44,7 @@ namespace Logic.BallControl
                 BallCollision collision = new BallCollision(_ball.ID, hitBall.ID, _ball, hitBall);
                 _collisionRegistrationService.TryRegisterBallCollision(collision);
                 _ballAnimation.AnimateBallPop();
+                _ballAnimation.AnimateBallCollision(obj.contacts[0].point, _ball.TargetColor);
             }
 
             if (obj.collider.TryGetComponent(out Wall wall))
