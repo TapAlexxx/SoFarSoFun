@@ -10,9 +10,9 @@ namespace Logic.BallControl
         {
             Sequence sequence = DOTween.Sequence();
             sequence
-                .Append(transform.DOScale(2.3f, 0.2f))
-                .Append(transform.DOScale(1.7f, 0.15f))
-                .Append(transform.DOScale(2f, 0.2f));
+                .Append(transform.DOScale(2.3f, 0.1f))
+                .Append(transform.DOScale(1.8f, 0.1f))
+                .Append(transform.DOScale(2f, 0.1f));
         }
     }
 
